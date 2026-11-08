@@ -24,4 +24,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_API }}
           projectName: kebun-safa
           directory: kebun-safa
-          wranglerVersion: '4'
+          wranglerVersion: '4' 
