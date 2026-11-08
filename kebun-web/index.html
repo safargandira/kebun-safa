@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2a2230">
+<title>Bunga di Kebun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <div class="book" id="book">
+    <section class="leaf" aria-label="Halaman 1 dari 9">
+      <div class="face front page p1">
+        <img class="dots" src="images/cover-dots.webp" alt="" width="804" height="1716">
+        <img class="spark s1" src="images/sparkle.png" alt="">
+        <img class="spark s2" src="images/sparkle.png" alt="">
+        <img class="spark s3" src="images/sparkle.png" alt="">
+        <img class="spark s4" src="images/sparkle.png" alt="">
+        <img class="spark s5" src="images/sparkle.png" alt="">
+        <h1 class="title"><img class="t" src="images/title.webp" alt="Bunga di Kebun"></h1>
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 2 dari 9">
+      <div class="face front page p2">
+        <img class="f f1" src="images/p2-1.jpg" alt="Anggrek bulan merah muda yang sedang mekar" decoding="async">
+        <img class="f f2" src="images/p2-2.jpg" alt="Dua anggrek bulan berbintik merah muda dengan tangkai hijau" decoding="async">
+        <img class="f f3" src="images/p2-3.jpg" alt="Rumpun anggrek bulan merah muda di dalam pot tanah liat" decoding="async">
+        <img class="f f4" src="images/p2-4.jpg" alt="Anggrek bulan merah muda berbintik di antara kuncup" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 3 dari 9">
+      <div class="face front page p3">
+        <img class="f f1" src="images/p3-1.jpg" alt="" decoding="async">
+        <img class="f f2" src="images/p3-2.jpg" alt="Dua anggrek bulan putih dengan lidah kuning" decoding="async">
+        <img class="f f3" src="images/p3-3.jpg" alt="Tangkai anggrek bulan putih dengan kuncup hijau" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 4 dari 9">
+      <div class="face front page p4">
+        <img class="f f1" src="images/p4-1.jpg" alt="Anggrek bulan magenta dilihat dari dekat" decoding="async">
+        <img class="f f2" src="images/p4-2.jpg" alt="Anggrek bulan magenta di antara dedaunan" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 5 dari 9">
+      <div class="face front page p5">
+        <img class="f f1" src="images/p5-1.jpg" alt="Anggrek kuning dengan bercak cokelat" decoding="async">
+        <img class="f f2" src="images/p5-2.jpg" alt="Tandan anggrek kuning yang bermekaran" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 6 dari 9">
+      <div class="face front page p6">
+        <img class="f f1" src="images/p6-1.jpg" alt="Anggrek bulan putih dengan bercak ungu" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 7 dari 9">
+      <div class="face front page p7">
+        <img class="f f1" src="images/p7-1.jpg" alt="Anggrek dendrobium merah muda tua" decoding="async">
+        <img class="f f2" src="images/p7-2.jpg" alt="Dua anggrek dendrobium merah muda pada tangkai" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 8 dari 9">
+      <div class="face front page p8">
+        <img class="f f1" src="images/p8-1.jpg" alt="" decoding="async">
+        <img class="f f2" src="images/p8-2.jpg" alt="Anggrek ungu muda di depan atap genteng" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    <section class="leaf" aria-label="Halaman 9 dari 9">
+      <div class="face front page p9">
+        <img class="f f1" src="images/p9-1.jpg" alt="Anggrek putih keunguan dengan bibir bunga yang lebar" decoding="async">
+        <img class="f f2" src="images/p9-2.jpg" alt="Anggrek ungu muda mekar di antara daun hijau" decoding="async">
+        <img class="f f3" src="images/p9-3.jpg" alt="Bunga anggrek ungu muda dengan titik embun" decoding="async">
+      </div>
+      <div class="face back" aria-hidden="true"></div>
+    </section>
+    </div>
+  </main>
+
+  <nav class="controls" aria-label="Navigasi halaman">
+    <button type="button" id="prev" aria-label="Halaman sebelumnya">&#8592;</button>
+    <ol class="pager" id="pager"></ol>
+    <button type="button" id="next" aria-label="Halaman berikutnya">&#8594;</button>
+    <p class="status" id="status" aria-live="polite"></p>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+/* Bunga di Kebun - flipbook
+   Ukuran halaman mengikuti desain Figma: 402 x 858 (rasio 402:858).
+   Semua posisi foto memakai persen, jadi tata letak ikut mengecil/membesar. */
+
+:root {
+  --stage: #2a2230;
+  --ink: #f3ecf4;
+  --paper: #fffaf4;
+  --dur: 0.95s;
+  --ease: cubic-bezier(0.5, 0.05, 0.2, 1);
+  /* tinggi halaman: sisakan ruang untuk tombol di bawah */
+  --ph: min(calc(100dvh - 96px), calc((100vw - 24px) * 858 / 402));
+  --pw: calc(var(--ph) * 402 / 858);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 35%, #3d3246 0%, var(--stage) 70%);
+  color: var(--ink);
+  font: 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* ---------- Buku ---------- */
+.book {
+  position: relative;
+  width: var(--pw);
+  height: var(--ph);
+  perspective: calc(var(--pw) * 3.4);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45));
+}
+
+.leaf {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 50%;          /* engsel di sisi kiri */
+  transform-style: preserve-3d;
+  transition:
+    transform var(--dur) var(--ease) var(--d, 0s),
+    visibility 0s linear 0s;
+}
+
+.leaf.flipped {
+  transform: rotateY(-180deg);
+  visibility: hidden;               /* sembunyikan setelah selesai terbalik */
+  transition:
+    transform var(--dur) var(--ease) var(--d, 0s),
+    visibility 0s linear calc(var(--dur) + var(--d, 0s));
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 2px 10px 10px 2px;
+}
+
+/* punggung halaman: kertas polos */
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(270deg, #ece3ec, var(--paper) 45%);
+  transition: opacity 0.3s ease 0.6s;
+}
+.leaf.flipped .back { opacity: 0; }
+
+/* ---------- Bayangan saat halaman dibuka ---------- */
+.front::before,
+.front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity var(--dur) ease var(--d, 0s);
+}
+/* halaman yang sedang terbalik menggelap */
+.front::before {
+  background: linear-gradient(90deg, rgba(24, 10, 34, 0.5), rgba(24, 10, 34, 0.15));
+  opacity: 0;
+}
+.leaf.flipped .front::before { opacity: 1; }
+/* halaman di bawahnya terang pelan-pelan saat tersingkap */
+.front::after {
+  background: linear-gradient(90deg, rgba(24, 10, 34, 0.42), rgba(24, 10, 34, 0.1) 45%, transparent 85%);
+  opacity: 1;
+}
+.leaf:first-child .front::after,
+.leaf.flipped + .leaf .front::after { opacity: 0; }
+
+/* ---------- Isi halaman ---------- */
+.page img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.p1{background:#FFEBFC}
+.p2{background:#DDEBAE}
+.p3{background:#FFEBFE}
+.p4{background:#FFFFDD}
+.p5{background:#FFF3EB}
+.p6{background:#F9F7E9}
+.p7{background:#F7FADB}
+.p8{background:#F3EEF3}
+.p9{background:#DDEBAE}
+
+/* Sampul */
+.p1 .dots{left:0;top:0;width:100%;height:100%}
+.p1 .s1{left:80.597%;top:51.282%;width:7.96%;height:3.73%}
+.p1 .s2{left:71.891%;top:55.128%;width:7.96%;height:3.73%}
+.p1 .s3{left:50.746%;top:41.608%;width:7.96%;height:3.73%}
+.p1 .s4{left:7.711%;top:46.737%;width:7.96%;height:3.73%}
+.p1 .s5{left:16.169%;top:56.993%;width:7.96%;height:3.73%}
+.p1 .t{left:13.266%;top:42.89%;width:68.575%;height:20.047%}
+/* Halaman 2 */
+.p2 .f1{left:0%;top:0%;width:100%;height:25.991%}
+.p2 .f2{left:39.303%;top:28.205%;width:56.716%;height:35.431%}
+.p2 .f3{left:9.453%;top:75.058%;width:59.95%;height:20.979%}
+.p2 .f4{left:0%;top:55.711%;width:52.239%;height:19.347%}
+/* Halaman 3 */
+.p3 .f1{left:0%;top:0%;width:100%;height:80.653%}
+.p3 .f2{left:14.677%;top:9.207%;width:70.398%;height:41.841%}
+.p3 .f3{left:20.896%;top:66.084%;width:58.209%;height:20.396%}
+/* Halaman 4 */
+.p4 .f1{left:0%;top:31.119%;width:100%;height:68.881%}
+.p4 .f2{left:39.055%;top:0%;width:60.945%;height:24.709%}
+/* Halaman 5 */
+.p5 .f1{left:0%;top:0%;width:100%;height:70.28%}
+.p5 .f2{left:32.587%;top:73.077%;width:67.413%;height:26.923%}
+/* Halaman 6 */
+.p6 .f1{left:0%;top:0%;width:100%;height:100%}
+/* Halaman 7 */
+.p7 .f1{left:0%;top:0%;width:82.338%;height:50%}
+.p7 .f2{left:0%;top:55.711%;width:100%;height:44.289%}
+/* Halaman 8 */
+.p8 .f1{left:0%;top:0%;width:100%;height:100%}
+.p8 .f2{left:8.209%;top:22.844%;width:83.333%;height:29.604%}
+/* Halaman 9 */
+.p9 .f1{left:0%;top:0%;width:100%;height:37.413%}
+.p9 .f2{left:0%;top:64.802%;width:100%;height:35.198%}
+.p9 .f3{left:0%;top:32.517%;width:58.955%;height:22.96%}
+
+/* ---------- Kontrol ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 80px;
+  padding: 0 16px calc(env(safe-area-inset-bottom, 0) + 8px);
+}
+
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.controls button:hover:not(:disabled) { background: rgba(255, 255, 255, 0.24); }
+.controls button:disabled { opacity: 0.3; cursor: default; }
+.controls button:focus-visible { outline: 3px solid #ffd6f6; outline-offset: 2px; }
+
+.pager { display: flex; list-style: none; }
+.pager button {
+  width: 28px;
+  height: 44px;
+  background: none;
+}
+.pager button::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: transform 0.25s, background 0.25s;
+}
+.pager button[aria-current="true"]::before { background: #ffd6f6; transform: scale(1.35); }
+
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 420px) {
+  .controls { gap: 4px; }
+  .pager button { width: 22px; }
+}
+
+/* ---------- Kurangi gerak ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0.01s; }
+  .back, .front::before, .front::after { transition: none; }
+}
